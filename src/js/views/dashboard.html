@@ -1,0 +1,60 @@
+<!--
+ Copyright (c) 2014, 2022, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <h1>Dashboard Content Area</h1>
+  <div>
+    To change the content of this section, you will make edits to the dashboard.html file located in the /js/views
+    folder.
+  </div>
+
+
+  <oj-button on-oj-action="[[changeTemplate]]">change row template</oj-button>
+
+
+  <oj-buttonset-one class="oj-buttonset-width-auto" value="{{buttonValue}}">
+    <oj-option id="onOption" value="on">On</oj-option>
+    <oj-option id="offOption" value="off">Off</oj-option>
+  </oj-buttonset-one>
+  <br />
+  <br />
+  <div>Image will be rendered if the button is on:</div>
+  <oj-bind-if test="[[buttonValue() === 'on']]">
+    <span>new datta</span>
+  </oj-bind-if>
+
+
+
+  <div class="oj-flex-bar" style="height:calc(100% -  43px)">
+    <oj-table 
+      :aria-label="[['dataTable']]"
+      id="assa" data="[[deptDatasource]]"
+      edit-mode="rowEdit"
+      columns-default='{"sortable":"disabled"}'
+      columns="[[confidTableColumns]]"
+      selection-mode='{"row": "single", "column":"none"}'
+      row-renderer="[[oj.KnockoutTemplateUtils.getRenderer('row_template1', true)]]"
+      style="height: 100%; width: 100%;"
+      layout="fixed">
+    </oj-table>
+
+    <oj-bind-if test="[[]]"></oj-bind-if>
+
+  </div>
+</div>
+
+
+<script type="text/html" id="row_template1">
+  <tr>
+    <td><oj-bind-text value="[[$context.data.DepartmentId]]"></oj-bind-text></td>
+    <td>
+    <oj-bind-if test="[[$parent.get($context) == 'edit']]">
+      <span>data</span>
+    </oj-bind-if>
+    </td>
+
+    <td><oj-bind-text value="[[$context.data.EmployeeCount]]"></oj-bind-text></td>
+  </tr>
+</script>

@@ -1,0 +1,44 @@
+<!--
+ Copyright (c) 2014, 2022, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <h1>Customers Content Area</h1>
+  <div>
+    To change the content of this section, you will make edits to the customers.html file located in the /js/views
+    folder.
+  </div>
+
+
+  <div id="dialogWrapper1">
+    <oj-dialog id="modalDialog1" dialog-title="Modal Dialog1" aria-describedby="desc">
+      <div slot="body">
+        <oj-defer>
+          <oj-module config="[[ModuleElementUtils.createConfig({name: 'about', params: dialogparam})]]" class="oj-flex-item"></oj-module>
+        </oj-defer>
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton1" on-oj-action="[[close1]]">Close modalDialog1</oj-button>
+      </div>
+    </oj-dialog>
+
+
+    <oj-dialog id="modalDialog2" dialog-title="Modal Dialog2" aria-describedby="desc">
+      <div slot="body">
+        <oj-defer>
+          <oj-module config="[[ModuleElementUtils.createConfig({name: 'dashboard', params: dialogparam})]]"></oj-module>
+        </oj-defer>
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton2" on-oj-action="[[close2]]">Close modalDialog2</oj-button>
+      </div>
+    </oj-dialog>
+    <oj-button id="buttonOpener1" on-oj-action="[[open1]]">Open Dialog1</oj-button>
+    <oj-button id="buttonOpener2" on-oj-action="[[open2]]">Open Dialog2</oj-button>
+    <oj-button on-oj-action="[[refreshDialog]]">click to refresh</oj-button>
+    <oj-button on-oj-action="[[changeparam]]">click to change param</oj-button>
+    <div class="oj-sm-padding-4x-top" id="form-container">
+    </div>
+  </div>
+</div>
