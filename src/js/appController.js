@@ -8,8 +8,9 @@
 /*
  * Your application specific code will go here
  */
-define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils', 'ojs/ojcorerouter', 'ojs/ojmodulerouter-adapter', 'ojs/ojknockoutrouteradapter', 'ojs/ojurlparamadapter', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'ojs/ojarraydataprovider',
-        'ojs/ojdrawerpopup', 'ojs/ojmodule-element', 'ojs/ojknockout'],
+define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils', 'ojs/ojcorerouter',
+        'ojs/ojmodulerouter-adapter', 'ojs/ojknockoutrouteradapter', 'ojs/ojurlparamadapter', 'ojs/ojresponsiveutils',
+        'ojs/ojresponsiveknockoututils', 'ojs/ojarraydataprovider', 'ojs/ojdrawerpopup', 'ojs/ojmodule-element', 'ojs/ojknockout'],
   function(ko, Context, moduleUtils, KnockoutTemplateUtils, CoreRouter, ModuleRouterAdapter, KnockoutRouterAdapter, UrlParamAdapter, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider) {
 
      function ControllerViewModel() {
@@ -39,12 +40,13 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
         { path: 'incidents', detail: { label: 'Incidents', iconClass: 'oj-ux-ico-fire' } },
         { path: 'customers', detail: { label: 'Customers', iconClass: 'oj-ux-ico-contact-group' } },
         { path: 'about', detail: { label: 'About', iconClass: 'oj-ux-ico-information-s' }, },
-        { path: 'movie', detail: { label: 'Movie', iconClass: 'oj-ux-ico-information-s' }, }
+        { path: 'resttest', detail: { label: "REST Test", iconClass:'oj-ux-ico-bar-chart'}}
       ];
 
+      this.adapter = new UrlParamAdapter();
       // Router setup
       let router = new CoreRouter(navData, {
-        urlAdapter: new UrlParamAdapter()
+        urlAdapter: this.adapter
       });
       router.sync();
 
@@ -80,8 +82,11 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       // User Info used in Global Navigation area
       this.userLogin = ko.observable("john.hancock@oracle.com");
 
+      this.fun1 = () => {
+        console.log("called");
+      };
       this.menuItems = [
-        { id: 'new', label: 'New', disabled: false, value: 'New' }
+        { id: 'new', label: 'New', disabled: false, value: 'New', callback: this.fun1 }
     ];
 
       this.minimisedWindows = ko.observableArray(this.menuItems);

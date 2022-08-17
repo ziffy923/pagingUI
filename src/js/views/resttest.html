@@ -1,0 +1,21 @@
+<div>
+    <oj-data-grid
+              id="datagrid"
+              style="width: 100%;min-height: 25rem;height: calc(50vh - 0.625rem)"
+              class="demo-data-grid"
+              aria-label="Data Grid with Templates Demo"
+              data="[[dataGridProvider]]"
+              header.row.style="width:200px;"
+              scroll-policy="loadMoreOnScroll">
+              <template slot="columnHeaderTemplate" data-oj-as="header">
+                <oj-bind-text value="[[header]]"></oj-bind-text>
+              </template>
+              <template slot="cellTemplate" data-oj-as="cell">
+                  <span class="oj-typography-body-lg oj-typography-bold">
+                    <oj-bind-text value="[[$current.item.data.data]]"></oj-bind-text>
+                  </span>
+                
+              </template>
+            </oj-data-grid>
+  </div>
+  

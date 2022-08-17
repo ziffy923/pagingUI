@@ -93,13 +93,7 @@
       </template>
   
       <template slot="deptNameTemplate" data-oj-as="cell">
-        <oj-bind-if test='[[cell.mode=="navigation"]]'>
           <oj-bind-text value="[[cell.data]]"></oj-bind-text>
-        </oj-bind-if>
-  
-        <oj-bind-if test='[[cell.mode=="edit"]]'>
-          <oj-input-text id="it1" value="{{rowData.DepartmentName}}" class="editable"></oj-input-text>
-        </oj-bind-if>
       </template>
   
       <template slot="locIdTemplate" data-oj-as="cell">

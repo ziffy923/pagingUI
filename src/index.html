@@ -124,16 +124,16 @@
           </div>
         </header>
 
-        <div class="oj-flex-bar-end">
+        <!-- <div class="oj-flex-bar-end">
           <oj-toolbar>
             <oj-bind-for-each data="[[minimisedWindows]]">
               <template>
-                <oj-button chroming="outlined"><oj-bind-text value="[[$current.data.label]]"></oj-bind-text></oj-button>
+                <oj-button chroming="outlined" on-oj-action="[[$current.data.callback]]"><oj-bind-text value="[[$current.data.label]]"></oj-bind-text></oj-button>
               </template>
             </oj-bind-for-each>
           </oj-toolbar>
         </div>
-
+ -->
         
         <oj-module role="main" class="oj-web-applayout-max-width oj-web-applayout-content" config="[[moduleAdapter.koObservableConfig]]">
         </oj-module>

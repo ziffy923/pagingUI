@@ -1,12 +1,108 @@
-<!--
- Copyright (c) 2014, 2022, Oracle and/or its affiliates.
- Licensed under The Universal Permissive License (UPL), Version 1.0
- as shown at https://oss.oracle.com/licenses/upl/
- -->
 <div class="oj-hybrid-padding">
-  <h1>About Content Area</h1>
+  <h1>Incidents Content Area</h1>
   <div>
-    <span><oj-bind-text value="[[params()]]"></oj-bind-text></span>
-      To change the content of this section, you will make edits to the about.html file located in the /js/views folder.
+    Unchanged Code form cookbook
   </div>
+  <oj-data-grid
+            id="datagrid"
+            style="width: 100%;min-height: 25rem;height: calc(50vh - 0.625rem)"
+            class="demo-data-grid"
+            aria-label="Data Grid with Templates Demo"
+            data="[[dataGridProvider]]"
+            cell.class-name="[[getCellClassName]]"
+            header.column.class-name="[[getColumnHeaderClassName]]"
+            header.column.style="[[getColumnHeaderStyle]]"
+            header.row.style="width:120px;"
+            on-oj-scroll="[[handleScroll]]"
+            scroll-policy="loadMoreOnScroll">
+            <template slot="columnHeaderTemplate" data-oj-as="header">
+              <oj-bind-text value="[[formatColumnHeader(header)]]"></oj-bind-text>
+            </template>
+            <template slot="cellTemplate" data-oj-as="cell">
+              <oj-bind-if test="[[cell.item.columnIndex==0  || cell.item.columnIndex==1]]">
+                <span class="oj-typography-body-lg oj-typography-bold">
+                  <oj-bind-text value="[[cell.item.data.data]]"></oj-bind-text>
+                </span>
+              </oj-bind-if>
+              <oj-bind-if test="[[cell.item.columnIndex==2]]">
+                <span :class="[[cell.item.data.data > 0 ? 'oj-bg-success-30' : 'oj-bg-danger-30']]">
+                  <oj-bind-text value="[[numberConverter.format(cell.item.data.data)]]"></oj-bind-text>
+                </span>
+              </oj-bind-if>
+              <oj-bind-if test="[[cell.item.columnIndex==4]]">
+                <oj-status-meter-gauge
+                  min="[[minAmountOrdered]]"
+                  max="[[maxAmountOrdered]]"
+                  value="[[cell.item.data.data]]"
+                  thresholds="[[thresholdValues]]"
+                  class="demo-gauge"
+                  metric-label.position="insideIndicatorEdge"
+                  metric-label.rendered="on"
+                  readonly></oj-status-meter-gauge>
+              </oj-bind-if>
+              <oj-bind-if
+                test="[[cell.item.columnIndex==3
+                                      || cell.item.columnIndex==5
+                                      || cell.item.columnIndex==16]]">
+                <span>
+                  <oj-bind-text value="[[dateConverter.format(cell.item.data.data)]]"></oj-bind-text>
+                </span>
+              </oj-bind-if>
+              <oj-bind-if test="[[cell.item.columnIndex==6]]">
+                <span>
+                  <a
+                    :href="[['https://www.morningstar.com/search?query=' + cell.item.data.data]]"
+                    :target="[['_blank']]">
+                    <oj-bind-text value="[[cell.item.data.data]]"></oj-bind-text>
+                  </a>
+                </span>
+              </oj-bind-if>
+              <oj-bind-if test="[[cell.item.columnIndex==15]]">
+                <oj-led-gauge
+                  class="demo-gauge"
+                  value="[[cell.item.data.data]]"
+                  metric-label.rendered="on"
+                  size=".75"
+                  color="#0572CD"></oj-led-gauge>
+              </oj-bind-if>
+              <oj-bind-if test="[[cell.item.columnIndex==17]]">
+                <oj-bind-if test="[[cell.item.data.data]]">
+                  <span
+                    class="oj-icon-color-success oj-ux-ico-success-s oj-ux-icon-size-9x"
+                    role="img"
+                    aria-label="success"></span>
+                </oj-bind-if>
+                <oj-bind-if test="[[!cell.item.data.data]]">
+                  <span
+                    class="oj-icon-color-danger oj-ux-ico-error-s oj-ux-icon-size-9x"
+                    role="img"
+                    aria-label="error"></span>
+                </oj-bind-if>
+              </oj-bind-if>
+              <oj-bind-if
+                test="[[cell.item.columnIndex==20
+                                      || cell.item.columnIndex==21 ]]">
+                <span>
+                  <oj-bind-text value="[[cell.item.data.data]]"></oj-bind-text>
+                </span>
+              </oj-bind-if>
+              <oj-bind-if
+                test="[[cell.item.columnIndex!==0
+                                      && cell.item.columnIndex!==1
+                                      && cell.item.columnIndex!==2
+                                      && cell.item.columnIndex!==3
+                                      && cell.item.columnIndex!==4
+                                      && cell.item.columnIndex!==5
+                                      && cell.item.columnIndex!==6
+                                      && cell.item.columnIndex!==15
+                                      && cell.item.columnIndex!==16
+                                      && cell.item.columnIndex!==17
+                                      && cell.item.columnIndex!==20
+                                      && cell.item.columnIndex!==21]]">
+                <span>
+                  <oj-bind-text value="[[cell.item.data.data]]"></oj-bind-text>
+                </span>
+              </oj-bind-if>
+            </template>
+          </oj-data-grid>
 </div>

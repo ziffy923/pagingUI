@@ -1,0 +1,27 @@
+<div class="oj-hybrid-padding">
+  <h1>Incidents Content Area</h1>
+  <div>
+    To change the content of this section, you will make edits to the incidents.html file located in the /js/views
+    folder.
+  </div>
+  <div id="data"></div>
+  <oj-button on-oj-action="[[add]]">click to add</oj-button>
+  <oj-button on-oj-action="[[subtract]]">Click to subtract</oj-button>
+  <oj-button on-oj-action="[[dosome]]">Click to Log</oj-button>
+
+  <oj-button disabled="[[saveAvailabe]]">Test Button</oj-button>
+
+  <oj-button on-oj-action="[[draweopenclose]]">Open Drawer</oj-button>
+
+  <!-- <oj-drawer-popup opened="[[draweropen]]" edge="end">
+      <oj-defer>
+        <oj-module config="[[ModuleElementUtils.createConfig({viewPath: 'views/module2.html', viewModelPath:'viewModels/module2'})]]"></oj-module>
+      </oj-defer>
+    </oj-drawer-popup> -->
+
+  <oj-drawer-popup opened="[[draweropen]]" edge="end">
+    <!-- <oj-defer> -->
+    <oj-bind-text value="[[get()]]"></oj-bind-text>
+    <!-- </oj-defer> -->
+  </oj-drawer-popup>
+</div>
